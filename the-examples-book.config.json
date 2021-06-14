@@ -1,0 +1,27 @@
+{
+  "index_uid": "docs",
+  "sitemap_urls": ["https://the-examples-book.com/sitemap.xml"],
+  "start_urls": ["https://the-examples-book.com"],
+  "selectors": {
+    "lvl0": {
+      "selector": "article h1.page",
+      "global": true,
+      "default_value": "The Examples Book"
+    },
+    "lvl1": "article h2",
+    "lvl2": "article h3",
+    "lvl3": "article h4",
+    "lvl4": "article h5",
+    "lvl5": "article h6",
+    "text": "article p"
+  },
+  "strip_chars": " .,;:#",
+  "scrap_start_urls": true,
+  "custom_settings": {
+    "synonyms": {
+      "relevancy": ["relevant", "relevance"],
+      "relevant": ["relevancy", "relevance"],
+      "relevance": ["relevancy", "relevant"]
+    }
+  }
+}
