@@ -3,6 +3,7 @@ Wrapper on top of the MeiliSearch API client"""
 
 import meilisearch
 from builtins import range
+import sys
 
 def remove_bad_encoding(value):
     return value.replace('&#x27;', "'")
@@ -127,8 +128,15 @@ class MeiliSearchHelper:
             self.meilisearch_client.index(index_uid).delete()
         except Exception:
             print("The index " + index_uid + " does not exist. Creating...")
-
-        return self.meilisearch_client.create_index(index_uid, {'primaryKey': 'objectID'})
+            
+        try: 
+            return self.meilisearch_client.create_index(index_uid, {'primaryKey': 'objectID'})
+        except Exception:
+            # if two jobs are running at the same time this may return MeiliSearchApiError
+            # because the index already exists (even though we just deleted it), because
+            # another job created the index in the time between between deleting the index
+            # and running `create_index`. If this happens, gracefully stop the program.
+            sys.exit(0)
 
 # Algolia's settings:
     # {"minWordSizefor1Typo"=>3,
