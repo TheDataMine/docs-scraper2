@@ -13,7 +13,7 @@
     "lvl3": "article h4",
     "lvl4": "article h5",
     "lvl5": "article h6",
-    "text": "article p"
+    "text": "article p, article code"
   },
   "strip_chars": " .,;:#",
   "scrap_start_urls": true,
